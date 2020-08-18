@@ -98,5 +98,10 @@ public class JavaJoinGameTranslator extends PacketTranslator<ServerJoinGamePacke
         if (!newDimension.equals(entity.getDimension())) {
             DimensionUtils.switchDimension(session, newDimension);
         }
+
+        // Set world name(s) and count.
+        session.setWorldName(packet.getWorldName());
+        session.setWorldCount(packet.getWorldCount());
+        session.setWorldNames(packet.getWorldNames());
     }
 }

@@ -229,6 +229,24 @@ public class GeyserSession implements CommandSender {
     @Setter
     private boolean worldImmutable = false;
 
+    /**
+     * The size of the array of identifiers for all world on the server.
+    */
+    @Setter
+    private int worldCount;
+
+    /**
+     * An array of identifiers for all worlds on the server.
+    */
+    @Setter
+    private String[] worldNames;
+
+    /**
+     * The name of the world being spawned into
+    */
+    @Setter
+    private String worldName;
+
     public GeyserSession(GeyserConnector connector, BedrockServerSession bedrockServerSession) {
         this.connector = connector;
         this.upstream = new UpstreamSession(bedrockServerSession);
@@ -593,8 +611,8 @@ public class GeyserSession implements CommandSender {
         startGamePacket.setFromWorldTemplate(false);
         startGamePacket.setWorldTemplateOptionLocked(false);
 
-        startGamePacket.setLevelId("world");
-        startGamePacket.setLevelName("world");
+        startGamePacket.setLevelId(worldName);
+        startGamePacket.setLevelName(worldName);
         startGamePacket.setPremiumWorldTemplateId("00000000-0000-0000-0000-000000000000");
         // startGamePacket.setCurrentTick(0);
         startGamePacket.setEnchantmentSeed(0);
