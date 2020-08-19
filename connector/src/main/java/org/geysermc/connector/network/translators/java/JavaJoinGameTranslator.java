@@ -38,6 +38,7 @@ import org.geysermc.connector.network.session.GeyserSession;
 import org.geysermc.connector.network.translators.PacketTranslator;
 import org.geysermc.connector.network.translators.Translator;
 import org.geysermc.connector.utils.DimensionUtils;
+import org.geysermc.connector.utils.WorldUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -95,5 +96,10 @@ public class JavaJoinGameTranslator extends PacketTranslator<ServerJoinGamePacke
         if (!newDimension.equals(entity.getDimension())) {
             DimensionUtils.switchDimension(session, newDimension);
         }
+
+        // Set world name(s) and count.
+        session.setWorldName(WorldUtils.handleWorldName(packet.getWorldName()));
+        session.setWorldCount(packet.getWorldCount());
+        session.setWorldNames(WorldUtils.handleWorldNames(packet.getWorldNames()));
     }
 }

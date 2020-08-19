@@ -237,6 +237,24 @@ public class GeyserSession implements CommandSender {
      */
     @Setter
     private boolean thunder = false;
+    
+    /**
+     * The size of the array of identifiers for all world on the server.
+    */
+    @Setter
+    private int worldCount = 1;
+
+    /**
+     * An array of identifiers for all worlds on the server.
+    */
+    @Setter
+    private String[] worldNames = {"minecraft:overworld"};
+
+    /**
+     * The name of the world being spawned into
+    */
+    @Setter
+    private String worldName = "minecraft:overworld";
 
     public GeyserSession(GeyserConnector connector, BedrockServerSession bedrockServerSession) {
         this.connector = connector;
@@ -586,8 +604,8 @@ public class GeyserSession implements CommandSender {
         startGamePacket.setFromWorldTemplate(false);
         startGamePacket.setWorldTemplateOptionLocked(false);
 
-        startGamePacket.setLevelId("world");
-        startGamePacket.setLevelName("world");
+        startGamePacket.setLevelId(worldName);
+        startGamePacket.setLevelName(worldName);
         startGamePacket.setPremiumWorldTemplateId("00000000-0000-0000-0000-000000000000");
         // startGamePacket.setCurrentTick(0);
         startGamePacket.setEnchantmentSeed(0);
